@@ -21,7 +21,7 @@ export default function HomePage() {
         <Link href="/auth/login">
           <Button
             size="lg"
-            className="w-full h-14 text-lg font-semibold bg-black hover:bg-gray-800 text-white rounded-xl"
+            className="w-full h-14 text-lg font-semibold cursor-pointer rounded-xl"
           >
             Continue
           </Button>

@@ -23,42 +23,22 @@ import {
 import { Input } from "@/components/ui/input";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import api from "@/api";
+import useLogin from "@/hooks/login-hook";
 
 type LoginFormData = {
   email: string;
   password: string;
 };
 
-type UserRole = "user" | "captain";
+type UserRole = "auth" | "captains";
 
 export default function LoginPage() {
-  const [selectedRole, setSelectedRole] = useState<UserRole>("user");
+  const [selectedRole, setSelectedRole] = useState<UserRole>("auth");
 
-  const {
-    formState: { isSubmitting },
-  } = useForm<LoginFormData>();
-
-  const formSchema = z.object({
-    username: z.string().min(1, "Username is required"),
-    email: z
-      .string()
-      .email("Invalid email address")
-      .nonempty("Email is required"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
+  const { form, onSubmit, isSubmitting } = useLogin(selectedRole, {
+    redirectTo: `/${selectedRole}/dashboard`,
   });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
-  });
-
-  const onSubmit = async (data: LoginFormData) => {
-    // Simulate API call
-    console.log("Login data:", { ...data, role: selectedRole });
-    // Here you would typically make an API call to authenticate the user
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
@@ -77,18 +57,18 @@ export default function LoginPage() {
         {/* Role Selector */}
         <div className="grid grid-cols-2 gap-3">
           <Button
-            variant={selectedRole === "user" ? "default" : "outline"}
+            variant={selectedRole === "auth" ? "default" : "outline"}
             className={`h-16 flex flex-col items-center justify-center space-y-1 cursor-pointer`}
-            onClick={() => setSelectedRole("user")}
+            onClick={() => setSelectedRole("auth")}
           >
             <User className="h-5 w-5" />
             <span className="text-sm font-medium">User</span>
           </Button>
 
           <Button
-            variant={selectedRole === "captain" ? "default" : "outline"}
+            variant={selectedRole === "captains" ? "default" : "outline"}
             className={`h-16 flex flex-col items-center justify-center space-y-1 cursor-pointer`}
-            onClick={() => setSelectedRole("captain")}
+            onClick={() => setSelectedRole("captains")}
           >
             <Car className="h-5 w-5" />
             <span className="text-sm font-medium">Captain</span>
@@ -96,7 +76,7 @@ export default function LoginPage() {
         </div>
 
         {/* Captain Login Note */}
-        {selectedRole === "captain" && (
+        {selectedRole === "captains" && (
           <Card className="border-blue-200 bg-blue-50">
             <CardContent className="pt-4">
               <p className="text-sm text-blue-800 font-medium">
@@ -163,7 +143,7 @@ export default function LoginPage() {
                   {isSubmitting
                     ? "Signing in..."
                     : `Sign in as ${
-                        selectedRole === "user" ? "User" : "Captain"
+                        selectedRole === "auth" ? "User" : "Captain"
                       }`}
                 </Button>
               </form>
