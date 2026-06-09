@@ -49,7 +49,7 @@ export default function RegisterPage() {
   console.log("captainForm errors : ", captainForm.formState.errors);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <Link href="/auth/login">

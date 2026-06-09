@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
 
   if (isEmailSent) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+      <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <Link href="/login">
             <Button variant="ghost" size="sm" className="p-2 cursor-pointer">
@@ -95,7 +95,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <Link href="/login">

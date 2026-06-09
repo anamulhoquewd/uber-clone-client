@@ -54,7 +54,7 @@ export default function ResetPasswordPage() {
   // Invalid token state
   if (!isValidToken) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+      <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <Link href="/auth/login">
             <Button variant="ghost" size="sm" className="p-2 cursor-pointer">
@@ -106,7 +106,7 @@ export default function ResetPasswordPage() {
   // Success state
   if (isPasswordReset) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+      <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <Link href="/auth/login">
             <Button variant="ghost" size="sm" className="p-2 cursor-pointer">
@@ -152,7 +152,7 @@ export default function ResetPasswordPage() {
 
   // Reset password form
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <Link href="/auth/login">

@@ -20,7 +20,7 @@ export default function Component() {
   return (
     <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden">
       {/* Header */}
-      <header className="absolute top-0 inset-x-0 z-10 p-4 flex items-center justify-between bg-gradient-to-b from-black/50 to-transparent">
+      <header className="absolute top-0 inset-x-0 z-10 p-4 flex items-center justify-between bg-linear-to-b from-black/50 to-transparent">
         <h1 className="text-2xl font-bold text-white">Uber</h1>
         <Button variant="ghost" size="icon" className="rounded-full text-white">
           <User className="h-6 w-6" />
@@ -32,7 +32,7 @@ export default function Component() {
       <div
         className={cn(
           "absolute inset-0 transition-opacity duration-500",
-          isSearchModalOpen ? "opacity-0" : "opacity-100"
+          isSearchModalOpen ? "opacity-0" : "opacity-100",
         )}
       >
         <Image
@@ -48,7 +48,7 @@ export default function Component() {
       <div
         className={cn(
           "absolute inset-x-0 bottom-0 z-20 bg-background rounded-t-3xl shadow-lg p-4 transition-transform duration-500 ease-in-out",
-          isSearchModalOpen ? "translate-y-full" : "translate-y-0"
+          isSearchModalOpen ? "translate-y-full" : "translate-y-0",
         )}
       >
         <div className="mb-4">

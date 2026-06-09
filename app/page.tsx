@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col items-center justify-between px-4 py-8">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white flex flex-col items-center justify-between px-4 py-8">
       {/* Header */}
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center space-y-6">

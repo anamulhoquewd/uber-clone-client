@@ -1,7 +1,7 @@
 import api from "@/api";
-import { setStorage } from "@/storage/local";
+import { setCookie } from "@/storage/local";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -15,10 +15,11 @@ const loginFormValidation = z.object({
 });
 
 const useLogin = (
-  role: "auth" | "captains",
-  { redirectTo = `/${role}/dashboard` }: { redirectTo?: string }
+  role: "users" | "captains",
+  { redirectTo = `/${role}/dashboard` }: { redirectTo?: string },
 ) => {
   const router = useRouter();
+  console.log("role : ", role);
 
   const form = useForm<z.infer<typeof loginFormValidation>>({
     resolver: zodResolver(loginFormValidation),
@@ -41,8 +42,8 @@ const useLogin = (
       // Set auth token
       const authToken = response.data.token;
 
-      // Set auth token in local storage
-      setStorage("token", authToken);
+      setCookie("token", authToken);
+      setCookie("role", role);
 
       // Clear form
       form.reset({

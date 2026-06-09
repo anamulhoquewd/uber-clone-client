@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowLeft, User, Car } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -21,27 +17,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import api from "@/api";
 import useLogin from "@/hooks/login-hook";
+import { ArrowLeft, Car, User } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 type LoginFormData = {
   email: string;
   password: string;
 };
 
-type UserRole = "auth" | "captains";
+type UserRole = "users" | "captains";
 
 export default function LoginPage() {
-  const [selectedRole, setSelectedRole] = useState<UserRole>("auth");
+  const [selectedRole, setSelectedRole] = useState<UserRole>("users");
 
   const { form, onSubmit, isSubmitting } = useLogin(selectedRole, {
     redirectTo: `/${selectedRole}/dashboard`,
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-8">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white px-4 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <Link href="/">
@@ -57,9 +53,9 @@ export default function LoginPage() {
         {/* Role Selector */}
         <div className="grid grid-cols-2 gap-3">
           <Button
-            variant={selectedRole === "auth" ? "default" : "outline"}
+            variant={selectedRole === "users" ? "default" : "outline"}
             className={`h-16 flex flex-col items-center justify-center space-y-1 cursor-pointer`}
-            onClick={() => setSelectedRole("auth")}
+            onClick={() => setSelectedRole("users")}
           >
             <User className="h-5 w-5" />
             <span className="text-sm font-medium">User</span>
@@ -143,7 +139,7 @@ export default function LoginPage() {
                   {isSubmitting
                     ? "Signing in..."
                     : `Sign in as ${
-                        selectedRole === "auth" ? "User" : "Captain"
+                        selectedRole === "users" ? "User" : "Captain"
                       }`}
                 </Button>
               </form>
